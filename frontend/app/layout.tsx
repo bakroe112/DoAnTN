@@ -2,8 +2,15 @@ import type { Metadata } from "next"
 import { Geist_Mono, Plus_Jakarta_Sans } from "next/font/google"
 
 import "./globals.css"
-import { ThemeProvider } from "@/components/theme-provider"
+import { ThemeProvider } from "@/src/layout/theme-provider"
 import { cn } from "@/lib/utils"
+import Header from "@/src/layout/Header"
+import Footer from "@/src/layout/Footer"
+import AppSidebar from "@/src/layout/Sidebar"
+import {
+  SidebarInset,
+  SidebarProvider,
+} from "@/src/components/ui/sidebar"
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -37,7 +44,18 @@ export default function RootLayout({
       )}
     >
       <body>
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <SidebarProvider>
+            <AppSidebar />
+            <SidebarInset>
+              <Header />
+              <main className="flex flex-1 flex-col gap-4 p-4">
+                {children}
+              </main>
+              <Footer />
+            </SidebarInset>
+          </SidebarProvider>
+        </ThemeProvider>
       </body>
     </html>
   )
