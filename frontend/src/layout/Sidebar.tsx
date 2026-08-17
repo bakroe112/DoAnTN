@@ -58,7 +58,7 @@ const navItems = [
   {
     label: "Chat",
     icon: Chat01Icon,
-    href: "#",
+    href: "/chat",
   },
   {
     label: "Camera Check",
@@ -204,6 +204,7 @@ export default function AppSidebar() {
                   <SidebarMenuButton
                     tooltip={item.label}
                     aria-label={item.label}
+                    render={<a href={item.href} />}
                   >
                     <HugeiconsIcon icon={item.icon} strokeWidth={1.5} />
                     <span>{item.label}</span>
