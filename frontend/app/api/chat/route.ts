@@ -1,11 +1,11 @@
-import { askWebsite } from "@/src/ai/website-rag";
-import { Message } from "@/src/components/pages/Chat/page";
+import { getAnswerFromChatbot } from "@/src/ai/website-rag";
+import { ChatMessage } from "@/src/components/pages/Chat/page";
 
 export async function POST(req: Request) {
     const { question, chatHistory } = (await req.json()) as {
         question: string;
-        chatHistory: Message[];
+        chatHistory: ChatMessage[];
     };
 
-    return askWebsite(question, chatHistory);
+    return getAnswerFromChatbot(question, chatHistory);
 }
